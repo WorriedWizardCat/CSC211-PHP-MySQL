@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">    
-        <title>VAriables</title>
+        <title>Variables</title>
     </head>
     <body>
         <?php
@@ -14,4 +14,5 @@
             print "<p>My first name is: $first_name<br>My last name is: $last_name<br>My address is: $address<br>My phone number is: $phone_number</p>"
         ?>
     </body>
+
 </html>
