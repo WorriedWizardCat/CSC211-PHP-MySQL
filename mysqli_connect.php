@@ -6,11 +6,12 @@
     </head>
     <body>
         <?php
-            if ($dbc = mysqli_connect("localhost", "root", "m3023299", "myblog")) {
+            mysqli_report(MYSQLI_REPORT_OFF);
+            if ($dbc = @mysqli_connect("localhost", "root", "m3023299", "myblog")) {
                 print "<p>Successfully connected to the database!</p>";
                 mysqli_close($dbc);
             } else {
-                print "style='color: red'>Could not connect to the database.</p>";
+                print "<p style='color: red'>Could not connect to the database:<br>" . mysqli_connect_error() . ".</p>";
             }
         ?>
     </body>
