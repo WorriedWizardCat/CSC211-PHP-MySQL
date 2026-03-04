@@ -9,7 +9,7 @@
             mysqli_report(MYSQLI_REPORT_OFF);
 
             if ($dbc = @mysqli_connect("localhost", "root", "m3023299", "myblog")) {
-                $query = 'CREATE TABLE entries (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(100) NOT NULL, data_entered DATETIME NOT NULL) CHARACTER SET utf8';
+                $query = 'CREATE TABLE entries (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(100) NOT NULL, entry VARCHAR(100) NOT NULL, date_entered DATETIME NOT NULL) CHARACTER SET utf8';
 
                 if (@mysqli_query($dbc, $query)) {
                     print "<p>The table has been created.</p>";
