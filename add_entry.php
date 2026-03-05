@@ -10,17 +10,19 @@
             mysqli_report(MYSQLI_REPORT_OFF);
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $dbc = mysqli_connect("localhost", "root", "m3023299", "myblog");
+                mysqli_set_charset($dbc, "utf8");
                 $problem = FALSE;
                 if (!empty($_POST["title"]) && !empty($_POST["entry"])) {
-                    $title = trim(strip_tags($_POST["title"]));
-                    $entry = trim(strip_tags($_POST["entry"]));
+                    $title = mysqli_real_escape_string($dbc, trim(strip_tags($_POST["title"])));
+                    $entry = mysqli_real_escape_string($dbc, trim(strip_tags($_POST["entry"])));
                 } else {
                     print "<p style='color: red'>Please submit both a title and an entry.</p>";
                     $problem = TRUE;
                 }
 
                 if (!$problem) {
-                    $dbc = mysqli_connect("localhost", "root", "m3023299", "myblog");
+                    
                     $query = "INSERT INTO entries (title, entry, date_entered) VALUES ('$title', '$entry', NOW())";
 
                     if (mysqli_query($dbc, $query)) {
@@ -28,9 +30,8 @@
                     } else {
                         print "<p style='color: red'>Could not add the entry because:<br />" . mysqli_error($dbc) . ".</p><p>The query being run was: " . $query . "</p>";
                     }
-
-                    mysqli_close($dbc);
                 }
+                mysqli_close($dbc);
             }
         ?>
         <form action="" method="post">
